@@ -35,6 +35,11 @@
 					font-size:25px;
 					font-family:Verdana;
 					align-items:center;
+					border-radius:5px;
+					border-color:#1F510D;
+					display:inline-block;
+					cursor:pointer;
+					box-shadow:5px 5px 5px hsla(231,80%,24%,1.00), 5px 5px hsla(231,80%,24%,1.00) inset;
 				}
 			p
 				{
@@ -47,16 +52,23 @@
 				}
 			button
 				{
-					width:20%;
-					height:30px;
-					
+					border-radius:5px;
+					background-color:#1917B0; 
+					width:40%; 
+					height:10%; 
+					color: hsla(110,100%,22%,1.00);
+					font-family:Verdana;
+					border-color:#1F510D;
+					box-shadow:3px 3px 3px #1F510D, 3px 3px #1F510D inset;
+					margin-top:5%;
+					font-size: 36px;
 				}
 			select
 				{	
  					border-radius:5px;
 					background-color:#1917B0; 
 					width:40%; 
-					height:10%; 
+					height:8%; 
 					color: hsla(110,100%,22%,1.00);
 					font-weight:900;
 					line-height:900%;
@@ -66,8 +78,7 @@
 					display:inline-block;
 					cursor:pointer;
 					box-shadow:3px 3px 3px #1F510D, 3px 3px #1F510D inset;
-					text-indent: 25%;
-					margin-top:5%
+					margin-top:3%;
 				}
 		</style>
 	
@@ -86,20 +97,50 @@
 		
 		</script>
 		
-			<div style="height:20%"></div>
-      		<center style="height:100%"><div style="height:60%;background-image:url(planet-earth-from-space.jpg)">
+			<div style="height:10%"></div>
+      		<center style="height:100%"><div style="height:80%;background-image:url(planet-earth-from-space.jpg)">
             	<form>
-                	<select>
+                	<select id="cidade">
+                    	 <option>Cidade</option>
                     	 <option id="h" value="Havana">Havana</option>
                          <option id="a" value="Acapulco">Acapulco</option>
                          <option id="p" value="Paris">Paris</option>
                          <option id="m" value="Miami">Miami</option>
                          <option id="r" value="Roma">Roma</option>
-                    </select>
-                    
+                    </select><br>
+                    <select id="hotel" style="width:50%;">
+                    	 <option>Hotel</option>
+                    	 <option id="4e" value="Hotel 4">Hotel 4 Estrelas</option>
+                         <option id="5e" value="Hotel 5">Hotel 5 Estrelas</option>
+                    </select><br>
+                    <select id="transporte" style="width:87%;">
+                    	 <option>Transporte</option>
+                    	 <option id="ah" value="Trans ah">Transporte do aeroporto para o hotel</option>
+                         <option id="ha" value="Trans ha">Transporte do hotel para o aeroporto</option>
+                         <option id="ab" value="Trans ab">Os dois transportes</option>
+                         <option id="sm" value="Trans sm">Sem transporte</option>
+                    </select><br>
+                    <select id="extras" style="width:70%;">
+                    	 <option>Extras</option>
+                    	 <option id="ad" value="Trans ab">Almoço em cada um dos dias</option>
+                         <option id="jd" value="Trans sm">Jantar em cada um dos dias</option>
+                    	 <option id="jg" value="Jantar g">Jantar de gala</option>
+                         <option id="ec" value="Esp ca">Espetáculo no casino</option>
+                    </select><br>
+                    <select id="adulto" style="width:25%;">
+                    	 <option>Adultos</option>
+                    	 <option id="1a" value="1 Adul">1 Adultos</option>
+                         <option id="2a" value="2 Adul">1 Adultos</option>
+                         <option id="3a" value="3 Adul">1 Adultos</option>
+                    </select><br>
+                    <select id="criança" style="width:25%;">
+                    	 <option>Crianças</option>
+                    	 <option id="1c" value="1 Cri">1 criança</option>
+                    </select><br>
+                    <button type="button" id="b1" value="Validar" onClick="">Validar</button>
                 </form>
             </div></center>
-			<div style="height:20%"></div>
+			<div style="height:10%"></div>
         
 	</body>
 	
