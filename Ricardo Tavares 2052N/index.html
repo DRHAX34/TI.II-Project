@@ -8,10 +8,8 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Trabalho TI II</title>
 	<meta name="description" content="Javascript">
-	<!--<link rel="stylesheet" href="main.css">-->
     
 	<style>
-			
 			body
 	
 				{
@@ -30,6 +28,7 @@
 				}
 			form
 				{
+					alignment-adjust:central;
 					align-content:center;
 					height:100%;
 					width:80%;
@@ -37,28 +36,124 @@
 					font-size:25px;
 					font-family:Verdana;
 					align-items:center;
-				}
-			p
-				{
-					width:100%;
-				}
-			input
-				{
-					width:50%;
-					height:25px;
+					border-radius:5px;
+					border-color:#1F510D;
+					display:inline-block;
+					cursor:pointer;
+					box-shadow:5px 5px 5px hsla(231,80%,24%,1.00), 5px 5px hsla(231,80%,24%,1.00) inset;
 				}
 			button
 				{
-					width:20%;
-					height:30px;
-					
+					border-radius:5px;
+					background-color:#1917B0; 
+					width:40%; 
+					height:10%; 
+					color: hsla(110,100%,22%,1.00);
+					font-family:Verdana;
+					border-color:#1F510D;
+					box-shadow:3px 3px 3px #1F510D, 3px 3px #1F510D inset;
+					margin-top:5%;
+					font-size: 36px;
 				}
-			
+			select
+				{	
+ 					border-radius:5px;
+					text-align:center !important;
+					background-color:#1917B0; 
+					width:40%; 
+					height:8%; 
+					color: hsla(110,100%,22%,1.00);
+					font-weight:900;
+					line-height:900%;
+					font-size:100%;
+					font-family:Verdana;
+					border-color:#1F510D;
+					display:inline-block;
+					cursor:pointer;
+					box-shadow:3px 3px 3px #1F510D, 3px 3px #1F510D inset;
+					margin-top:3%;
+				}
+			select.ctr
+				{	
+ 					border-radius:5px;
+					text-align:center !important;
+					background-color:#1917B0; 
+					width:40%; 
+					height:8%; 
+					color: hsla(110,100%,22%,1.00);
+					font-weight:900;
+					line-height:900%;
+					font-size:100%;
+					font-family:Verdana;
+					border-color:#1F510D;
+					display:inline-block;
+					cursor:pointer;
+					box-shadow:3px 3px 3px #1F510D, 3px 3px #1F510D inset;
+					margin-top:3%;
+				}
+			input
+				{	
+ 					border-radius:5px;
+					text-align:center;
+					background-color:#1917B0; 
+					width:15%; 
+					height:8%; 
+					color: hsla(110,100%,22%,1.00);
+					font-weight:900;
+					font-size:100%;
+					font-family:Verdana;
+					border-color:#1F510D;
+					display:inline-block;
+					cursor:pointer;
+					box-shadow:3px 3px 3px #1F510D, 3px 3px #1F510D inset;
+					margin-top:3%;
+				}
 		</style>
 	
 		<script>
-		
-		
+		// declaração de variaveis id 
+		var id_cidade = document.getElementById('cidade');
+		var id_hotel = document.getElementById('hotel');
+		var id_transporte = document.getElementById('transporte');
+		var id_extra = document.getElementById('extra');
+		var id_adultos = document.getElementById('adultos');
+		var id_criancas = document.getElementById('criancas');
+			
+			
+			// declaração do objecto
+			function navegator(cidade, hotel, transporte, extra, adultos, criancas){
+				var obj = new Object();
+				obj.cidade = cidade;
+				obj.hotel = hotel;
+				obj.transporte = transporte;
+				obj.adultos = adultos;
+				obj.criancas = criancas;
+				obj.disCont = function(){
+					alert(this.cidade,"\n",this.hotel,"\n",this.transporte,"\n",this.adulto,"\n",this.crianca);
+				};
+			return obj;
+			}
+			// teste provavelmente parvo
+			function mostrar(arg1, arg2){
+				var a = document.getElementById(arg1);
+				var b = document.getElementById(arg2);
+				switch (a){
+					case h: 
+						
+						break;
+					case a:
+						
+						break;
+					case p:
+						
+						break;
+					case m:
+						
+						break;
+					case r:	
+						
+				}
+			}
 		</script>
 
 	</head>
@@ -71,15 +166,50 @@
 		
 		</script>
 		
-			<div style="height:20%"></div>
-      		<center style="height:100%"><div style="height:60%;background-image:url(planet-earth-from-space.jpg)">
+			<div style="height:10%"></div>
+      		<center style="height:100%"><div style="height:80%;background-image:url(planet-earth-from-space.jpg)">
             	<form>
-                	 <p style="padding-top:10%">Nome<br><input type="text"></p>
-                     <p>Password<br><input type="password"></p>
-                     <p style="padding-top:2%"><button></button></p>
+                	<select id="cidade">
+                    	 <option class="ctr">Cidade</option>
+                    	 <option class="ctr" id="h" value="Havana" onClick="">Havana</option>
+                         <option class="ctr" id="a" value="Acapulco" onClick="">Acapulco</option>
+                         <option class="ctr" id="p" value="Paris" onClick="">Paris</option>
+                         <option class="ctr" id="m" value="Miami" onClick="">Miami</option>
+                         <option class="ctr" id="r" value="Roma" onClick="">Roma</option>
+                    </select><input id ="lc" value="0 €"><br>
+                    <select id="hotel" style="width:50%;">
+                    	 <option class="ctr">Hotel</option>
+                    	 <option class="ctr" id="4e" value="Hotel 4" onClick="">Hotel 4 Estrelas</option>
+                         <option class="ctr" id="5e" value="Hotel 5" onClick="">Hotel 5 Estrelas</option>
+                    </select><input id ="lh" value="0 €"><br>
+                    <select id="transporte" style="width:75%;">
+                    	 <option class="ctr">Transporte</option>
+                    	 <option class="ctr" id="ah" value="Trans ah" onClick="">Transporte do aeroporto / hotel</option>
+                         <option class="ctr" id="ha" value="Trans ha" onClick="">Transporte do hotel / aeroporto</option>
+                         <option class="ctr" id="ab" value="Trans ab" onClick="">Os dois transportes</option>
+                         <option class="ctr" id="sm" value="Trans sm" onClick="">Sem transporte</option>
+                    </select><input id ="lt" value="0 €"><br>
+                    <select id="extras" style="width:70%;">
+                    	 <option class="ctr">Extras</option>
+                    	 <option class="ctr" id="ad" value="Trans ab" onClick="">Almoço em cada um dos dias</option>
+                         <option class="ctr" id="jd" value="Trans sm" onClick="">Jantar em cada um dos dias</option>
+                    	 <option class="ctr" id="jg" value="Jantar g" onClick="">Jantar de gala</option>
+                         <option class="ctr" id="ec" value="Esp ca" onClick="">Espetáculo no casino</option>
+                    </select><input id ="le" value="0 €"><br>
+                    <select id="adulto" style="width:25%;">
+                    	 <option class="ctr">Adultos</option>
+                    	 <option class="ctr" id="1a" value="1 Adul" onClick="">1 Adultos</option>
+                         <option class="ctr" id="2a" value="2 Adul" onClick="">1 Adultos</option>
+                         <option class="ctr" id="3a" value="3 Adul" onClick="">1 Adultos</option>
+                    </select><input id ="la" value="0 €"><br>
+                    <select id="criança" style="width:25%;">
+                    	 <option class="ctr">Crianças</option>
+                    	 <option class="ctr" id="1c" value="1 Cri" onClick="">1 criança</option>
+                    </select><input id ="lcr" value="0 €"><br>
+                    <button type="button" id="b1" value="Validar" onClick="">Validar</button>
                 </form>
             </div></center>
-			<div style="height:20%"></div>
+			<div style="height:10%"></div>
         
 	</body>
 	
