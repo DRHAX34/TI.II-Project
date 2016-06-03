@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+
+<html>
+    
+    
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Trabalho TI II</title>
+	<meta name="description" content="Javascript">
+    
+	<link rel="stylesheet" type="text/css" href="Project_TI/reset_css.css">
+	<style>
+			.mainBody{
+				width:100%;
+				height:82.5%;
+				background-color:#1B111F;
+			}
+			.mainHeader{
+				width:100%;
+				height:12.5%;
+			}
+			.mainFooter{
+				width:100%;
+				height:5%;
+			}
+			.logo{
+				height:100%;
+				margin-bottom:5%;
+				margin-top:0px;
+			}
+			body{
+				background-image:url(Project_TI/mundo-noite.jpg);
+				background-attachment: fixed;
+				position:absolute;
+				top:0px;
+				left:0px;
+				right:0px;
+				bottom:0px;
+			}
+			.mainBody.clientDiv{
+				display: -webkit-flexbox;
+				display: -ms-flexbox;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-flex-align: center;
+				-ms-flex-align: center;
+				-webkit-align-items: center;
+				align-items: center;
+				text-align:	center;
+				justify-content: center;
+			}
+			.clientForm{
+				color:White;
+				font-size:25px;
+				font-family:Verdana;
+				align-items:center;
+				display:inline-block;
+				cursor:pointer;
+			}
+			.formButtons{
+				border-radius:5px;
+				/*background-color:#1917B0; */
+				width:40%; 
+				height:10%; 
+				/*color: hsla(110,100%,22%,1.00);*/
+				font-family:Verdana;
+				border-color:#1F510D;
+				/*box-shadow:3px 3px 3px #1F510D, 3px 3px #1F510D inset;*/
+				margin-top:5%;
+				font-size: 36px;
+			}
+			.formSelects{	
+ 				border-radius:5px;
+				text-align:center !important;
+				/*background-color:#1917B0; */
+				width:40%; 
+				height:8%; 
+				/*color: hsla(110,100%,22%,1.00);*/
+				font-weight:900;
+				line-height:900%;
+				font-size:100%;
+				font-family:Verdana;
+				border-color:#1F510D;
+				display:inline-block;
+				cursor:pointer;
+				/*box-shadow:3px 3px 3px #1F510D, 3px 3px #1F510D inset;*/
+				margin-top:3%;
+			}
+			.formSelects.ctr
+				{	
+ 				border-radius:5px;
+				text-align:center !important;
+				/*background-color:#1917B0;*/ 
+				width:40%; 
+				height:8%; 
+				/*color: hsla(110,100%,22%,1.00);*/
+				font-weight:900;
+				line-height:900%;
+				font-size:100%;
+				font-family:Verdana;
+				border-color:#1F510D;
+				display:inline-block;
+				cursor:pointer;
+				/*box-shadow:3px 3px 3px #1F510D, 3px 3px #1F510D inset;*/
+				margin-top:3%;
+			}
+			.formSelects.input
+				{	
+ 				border-radius:5px;
+				text-align:center;
+				/*background-color:#1917B0; */
+				width:15%; 
+				height:8%; 
+				/*color: hsla(110,100%,22%,1.00);*/
+				font-weight:900;
+				font-size:100%;
+				font-family:Verdana;
+				border-color:#1F510D;
+				display:inline-block;
+				cursor:pointer;
+				/*box-shadow:3px 3px 3px #1F510D, 3px 3px #1F510D inset;*/
+				margin-top:3%;
+			}
+		</style>
+	
+		<script>
+		// declaração de variaveis id 
+		var id_cidade = document.getElementById('cidade');
+		var id_hotel = document.getElementById('hotel');
+		var id_transporte = document.getElementById('transporte');
+		var id_extra = document.getElementById('extra');
+		var id_adultos = document.getElementById('adultos');
+		var id_criancas = document.getElementById('criancas');
+			
+			
+			// declaração do objecto
+			function navegator(cidade, hotel, transporte, extra, adultos, criancas){
+				var obj = new Object();
+				obj.cidade = cidade;
+				obj.hotel = hotel;
+				obj.transporte = transporte;
+				obj.adultos = adultos;
+				obj.criancas = criancas;
+				obj.disCont = function(){
+					alert(this.cidade,"\n",this.hotel,"\n",this.transporte,"\n",this.adulto,"\n",this.crianca);
+				};
+			return obj;
+			}
+			// teste provavelmente parvo
+			function mostrar(arg1, arg2){
+				var a = document.getElementById(arg1);
+				var b = document.getElementById(arg2);
+				switch (a){
+					case h: 
+						
+						break;
+					case a:
+						
+						break;
+					case p:
+						
+						break;
+					case m:
+						
+						break;
+					case r:	
+						
+				}
+			}
+		</script>
+
+	</head>
+
+
+	<body>
+		<div class="mainHeader"><img src="Project_TI/logo_agencia.png" class="logo" /></div>
+		<div class="mainBody">
+			<div class="mainBody clientDiv">
+				<form class="clientForm">
+					<select class="formSelects" id="cidade">
+						 <option class="ctr">Cidade</option>
+						 <option class="ctr" id="h" value="Havana" onClick="">Havana</option>
+						 <option class="ctr" id="a" value="Acapulco" onClick="">Acapulco</option>
+						 <option class="ctr" id="p" value="Paris" onClick="">Paris</option>
+						 <option class="ctr" id="m" value="Miami" onClick="">Miami</option>
+						 <option class="ctr" id="r" value="Roma" onClick="">Roma</option>
+					</select>
+					<input class="formSelects" id ="lc" value="0 €"><br>
+					<select class="formSelects" id="hotel" style="width:50%;">
+						 <option class="ctr">Hotel</option>
+						 <option class="ctr" id="4e" value="Hotel 4" onClick="">Hotel 4 Estrelas</option>
+						 <option class="ctr" id="5e" value="Hotel 5" onClick="">Hotel 5 Estrelas</option>
+					</select>
+					<input class="formSelects" id ="lh" value="0 €"><br>
+					<select class="formSelects" id="transporte" style="width:75%;">
+						 <option class="ctr">Transporte</option>
+						 <option class="ctr" id="ah" value="Trans ah" onClick="">Transporte do aeroporto / hotel</option>
+						 <option class="ctr" id="ha" value="Trans ha" onClick="">Transporte do hotel / aeroporto</option>
+						 <option class="ctr" id="ab" value="Trans ab" onClick="">Os dois transportes</option>
+						 <option class="ctr" id="sm" value="Trans sm" onClick="">Sem transporte</option>
+					</select>
+					<input class="formSelects" id ="lt" value="0 €"><br>
+					<select class="formSelects" id="extras" style="width:70%;">
+						 <option class="ctr">Extras</option>
+						 <option class="ctr" id="ad" value="Trans ab" onClick="">Almoço em cada um dos dias</option>
+						 <option class="ctr" id="jd" value="Trans sm" onClick="">Jantar em cada um dos dias</option>
+						 <option class="ctr" id="jg" value="Jantar g" onClick="">Jantar de gala</option>
+						 <option class="ctr" id="ec" value="Esp ca" onClick="">Espetáculo no casino</option>
+					</select>
+					<input class="formSelects" id ="le" value="0 €"><br>
+					<select class="formSelects" id="adulto" style="width:25%;">
+						 <option class="ctr">Adultos</option>
+						 <option class="ctr" id="1a" value="1 Adul" onClick="">1 Adultos</option>
+						 <option class="ctr" id="2a" value="2 Adul" onClick="">1 Adultos</option>
+						 <option class="ctr" id="3a" value="3 Adul" onClick="">1 Adultos</option>
+					</select>
+					<input class="formSelects" id ="la" value="0 €"><br>
+					<select class="formSelects" id="criança" style="width:25%;">
+						 <option class="ctr">Crianças</option>
+						 <option class="ctr" id="1c" value="1 Cri" onClick="">1 criança</option>
+					</select>
+					<input class="formSelects" id ="lcr" value="0 €"><br>
+					<button class="formButtons" type="button" id="b1" value="Validar" onClick="">Validar</button>
+				</form>
+			</div>
+		</div>
+		<div class="mainFooter"></div>
+        
+	</body>
+	
+</html>
