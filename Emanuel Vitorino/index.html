@@ -140,12 +140,12 @@
 	
 		<script>
 		// declaração de variaveis id 
-		var id_cidade = document.getElementById('cidade');
-		var id_hotel = document.getElementById('hotel');
-		var id_transporte = document.getElementById('transporte');
-		var id_extra = document.getElementById('extra');
-		var id_adultos = document.getElementById('adultos');
-		var id_criancas = document.getElementById('criancas');
+		var cidade = "";
+		var hotel = "";
+		var transporte = "";
+		var extras = {};
+		var adultos = "";
+		var criancas = "";
 			
 			
 			// declaração do objecto
@@ -161,26 +161,78 @@
 				};
 			return obj;
 			}
-			// teste provavelmente parvo
-			function mostrar(arg1, arg2){
-				var a = document.getElementById(arg1);
-				var b = document.getElementById(arg2);
-				switch (a){
-					case h: 
-						
-						break;
-					case a:
-						
-						break;
-					case p:
-						
-						break;
-					case m:
-						
-						break;
-					case r:	
-						
+			
+			function updateValues(varName,value){
+				this[varName]=value;
+				if(varName=="adultos"){
+					if(value == '3'){
+						document.getElementById('criancaSelect').disabled=true;
+						document.getElementById('criancaInput').disabled=true;
+					} else {
+						document.getElementById('criancaSelect').disabled=false;
+						document.getElementById('criancaInput').disabled=false;
+					}
 				}
+			}
+			function updateExtras(extraName,value){
+				extras[extraName]=value;
+			}
+			function validar(){
+				var validate = false;
+				var alert_txt = "";
+				if(cidade=="")
+					validate=true;
+				if(hotel=="")
+					validate=true;
+				if(transporte=="")
+					validate=true;
+				if(adultos=="")
+					validate=true;
+				if(criancas=="")
+					validate=true;
+				if(!validate){
+					alert_txt = (cidade!=""?(cidade + "\n"):"") + 
+						(hotel!=""?(hotel + "\n"):"") + 
+						(transporte!=""?(transporte + "\n"):"") +
+						(adultos!=""?(adultos + " Adultos\n"):"") +
+						(criancas!=""?(criancas + " Crianças"):"");
+					var hasExtras = false;
+					if(extras.almdias!=undefined && extras.almdias!=false){
+						if(!hasExtras){
+							hasExtras=true;
+							alert_txt += "\n Extras Escolhidos:"
+						}
+						alert_txt += "\n Almoço em cada um dos dias";
+					}
+					if(extras.jantdias!=undefined && extras.jantdias!=false){
+						if(!hasExtras){
+							hasExtras=true;
+							alert_txt += "\n Extras Escolhidos:"
+						}
+						alert_txt += "\n Jantar em cada um dos dias";
+					}
+					if(extras.jantgala!=undefined && extras.jantgala!=false){
+						if(!hasExtras){
+							hasExtras=true;
+							alert_txt += "\n Extras Escolhidos:"
+						}
+						alert_txt += "\n Jantar  de Gala";
+					}
+					if(extras.espetaclcasino!=undefined && extras.espetaclcasino!=false){
+						if(!hasExtras){
+							hasExtras=true;
+							alert_txt += "\n Extras Escolhidos:"
+						}
+						alert_txt += "\n Espetáculo no Casino";
+					}
+					if(!hasExtras){
+						alert_txt += "\n Não foram escolhidos nenhuns extras!"
+					}
+					
+				} else {
+					alert_txt = "Por favor selecione todas as opções obrigatórias!";
+				}
+				alert(alert_txt);
 			}
 		</script>
 
@@ -192,27 +244,27 @@
 		<div class="mainBody">
 			<div class="mainBody clientDiv">
 				<form class="clientForm">
-					<select class="formSelects" id="cidade">
-						 <option class="ctr">Cidade</option>
-						 <option class="ctr" id="h" value="Havana" onClick="">Havana</option>
-						 <option class="ctr" id="a" value="Acapulco" onClick="">Acapulco</option>
-						 <option class="ctr" id="p" value="Paris" onClick="">Paris</option>
-						 <option class="ctr" id="m" value="Miami" onClick="">Miami</option>
-						 <option class="ctr" id="r" value="Roma" onClick="">Roma</option>
+					<select class="formSelects" id="cidade" onchange="updateValues('cidade',this.value)">
+						 <option class="ctr" value="">Cidade</option>
+						 <option class="ctr">Havana</option>
+						 <option class="ctr">Acapulco</option>
+						 <option class="ctr">Paris</option>
+						 <option class="ctr">Miami</option>
+						 <option class="ctr">Roma</option>
 					</select>
 					<input class="formSelects" id ="lc" value="0 €"><br>
-					<select class="formSelects" id="hotel" style="width:50%;">
-						 <option class="ctr">Hotel</option>
-						 <option class="ctr" id="4e" value="Hotel 4" onClick="">Hotel 4 Estrelas</option>
-						 <option class="ctr" id="5e" value="Hotel 5" onClick="">Hotel 5 Estrelas</option>
+					<select class="formSelects" id="hotel" style="width:50%;" onchange="updateValues('hotel',this.value)">
+						 <option class="ctr" value="">Hotel</option>
+						 <option class="ctr">Hotel 4 Estrelas</option>
+						 <option class="ctr">Hotel 5 Estrelas</option>
 					</select>
 					<input class="formSelects" id ="lh" value="0 €"><br>
-					<select class="formSelects" id="transporte" style="width:75%;">
-						 <option class="ctr">Transporte</option>
-						 <option class="ctr" id="ah" value="Trans ah" onClick="">Transporte do aeroporto / hotel</option>
-						 <option class="ctr" id="ha" value="Trans ha" onClick="">Transporte do hotel / aeroporto</option>
-						 <option class="ctr" id="ab" value="Trans ab" onClick="">Os dois transportes</option>
-						 <option class="ctr" id="sm" value="Trans sm" onClick="">Sem transporte</option>
+					<select class="formSelects" id="transporte" style="width:75%;" onchange="updateValues('transporte',this.value)">
+						 <option class="ctr" value="">Transporte</option>
+						 <option class="ctr">Transporte do aeroporto / hotel</option>
+						 <option class="ctr">Transporte do hotel / aeroporto</option>
+						 <option class="ctr">Os dois transportes</option>
+						 <option class="ctr">Sem transporte</option>
 					</select>
 					<input class="formSelects" id ="lt" value="0 €"><br>
 					<center>
@@ -221,13 +273,13 @@
 							<tr>
 								<td>
 									<label class="checkboxes noselect">
-										<input type="checkbox" id="extras_almdias" />
+										<input type="checkbox" id="extras_almdias" onchange="updateExtras('almdias',this.checked)"/>
 										<span>Almoço em cada um dos dias</span>
 									</label>
 								</td>
 								<td>
 									<label class="checkboxes noselect">
-										<input type="checkbox" id="extras_jantdias" />
+										<input type="checkbox" id="extras_jantdias" onchange="updateExtras('jantdias',this.checked)"/>
 										<span>Jantar em cada um dos dias</span>
 									</label>
 								</td>
@@ -235,13 +287,13 @@
 							<tr>
 								<td>
 									<label class="checkboxes noselect">
-										<input type="checkbox" id="extras_jantgala" />
+										<input type="checkbox" id="extras_jantgala" onchange="updateExtras('jantgala',this.checked)"/>
 										<span>Jantar de gala</span>
 									</label>
 								</td>
 								<td>
 									<label class="checkboxes noselect">
-										<input type="checkbox" id="extras_espetaclcasino" />
+										<input type="checkbox" id="extras_espetaclcasino" onchange="updateExtras('espetaclcasino',this.checked)"/>
 										<span>Espetáculo no casino</span>
 									</label>
 								</td>
@@ -249,19 +301,20 @@
 						</table>
 					</center>
 					<input class="formSelects" id ="le" value="0 €"><br>
-					<select class="formSelects" id="adulto" style="width:25%;">
-						 <option class="ctr">Adultos</option>
-						 <option class="ctr" id="1a" value="1 Adul" onClick="">1 Adultos</option>
-						 <option class="ctr" id="2a" value="2 Adul" onClick="">1 Adultos</option>
-						 <option class="ctr" id="3a" value="3 Adul" onClick="">1 Adultos</option>
+					<select class="formSelects" id="adulto" style="width:25%;" onchange="updateValues('adultos',this.value)">
+						 <option class="ctr" value="">Adultos</option>
+						 <option class="ctr" value="1" >1 Adultos</option>
+						 <option class="ctr" value="2" >2 Adultos</option>
+						 <option class="ctr" value="3" >3 Adultos</option>
 					</select>
 					<input class="formSelects" id ="la" value="0 €"><br>
-					<select class="formSelects" id="criança" style="width:25%;">
-						 <option class="ctr">Crianças</option>
-						 <option class="ctr" id="1c" value="1 Cri" onClick="">1 criança</option>
+					<select class="formSelects" id="criancaSelect" style="width:25%;" onchange="updateValues('criancas',this.value)">
+						 <option class="ctr" value="">Crianças</option>
+						 <option class="ctr" value="0" >0 crianças</option>
+						 <option class="ctr" value="1" >1 criança</option>
 					</select>
-					<input class="formSelects" id ="lcr" value="0 €"><br>
-					<button class="formButtons" type="button" id="b1" value="Validar" onClick="">Validar</button>
+					<input class="formSelects" id ="criancaInput" value="0 €"><br>
+					<button class="formButtons" type="button" id="b1" value="Validar" onClick="validar()" >Validar</button>
 				</form>
 			</div>
 		</div>
