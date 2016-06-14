@@ -52,23 +52,21 @@
 			}
 			.clientForm{
 				color:White;
-				font-size:25px;
 				font-family:Verdana;
 				align-items:center;
 				display:inline-block;
-				cursor:pointer;
 			}
 			.formButtons{
 				border-radius:5px;
 				/*background-color:#1917B0; */
 				width:40%; 
 				height:10%; 
+				font-size:2em;
 				/*color: hsla(110,100%,22%,1.00);*/
 				font-family:Verdana;
 				border-color:#1F510D;
 				/*box-shadow:3px 3px 3px #1F510D, 3px 3px #1F510D inset;*/
 				margin-top:5%;
-				font-size: 36px;
 			}
 			.formSelects{	
  				border-radius:5px;
@@ -76,10 +74,9 @@
 				/*background-color:#1917B0; */
 				width:40%; 
 				height:8%; 
+				font-size:1.3em;
 				/*color: hsla(110,100%,22%,1.00);*/
 				font-weight:900;
-				line-height:900%;
-				font-size:100%;
 				font-family:Verdana;
 				border-color:#1F510D;
 				display:inline-block;
@@ -96,8 +93,6 @@
 				height:8%; 
 				/*color: hsla(110,100%,22%,1.00);*/
 				font-weight:900;
-				line-height:900%;
-				font-size:100%;
 				font-family:Verdana;
 				border-color:#1F510D;
 				display:inline-block;
@@ -114,13 +109,32 @@
 				height:8%; 
 				/*color: hsla(110,100%,22%,1.00);*/
 				font-weight:900;
-				font-size:100%;
 				font-family:Verdana;
 				border-color:#1F510D;
 				display:inline-block;
 				cursor:pointer;
 				/*box-shadow:3px 3px 3px #1F510D, 3px 3px #1F510D inset;*/
 				margin-top:3%;
+			}
+			.form-table table,td{
+				vertical-align:middle;
+				text-align:center;
+				border: 1px solid black;
+				background-color:white;
+				color:black;
+				padding:5px;
+				font-size:1.5em;
+			}
+			.checkboxes{
+				cursor:pointer;
+			}
+			.noselect {
+			  -webkit-touch-callout: none;
+			  -webkit-user-select: none;
+			  -khtml-user-select: none;
+			  -moz-user-select: none;
+			  -ms-user-select: none;
+			  user-select: none;
 			}
 		</style>
 	
@@ -201,13 +215,39 @@
 						 <option class="ctr" id="sm" value="Trans sm" onClick="">Sem transporte</option>
 					</select>
 					<input class="formSelects" id ="lt" value="0 €"><br>
-					<select class="formSelects" id="extras" style="width:70%;">
-						 <option class="ctr">Extras</option>
-						 <option class="ctr" id="ad" value="Trans ab" onClick="">Almoço em cada um dos dias</option>
-						 <option class="ctr" id="jd" value="Trans sm" onClick="">Jantar em cada um dos dias</option>
-						 <option class="ctr" id="jg" value="Jantar g" onClick="">Jantar de gala</option>
-						 <option class="ctr" id="ec" value="Esp ca" onClick="">Espetáculo no casino</option>
-					</select>
+					<center>
+						<span style="font-size:1.5em;">Extras</span>
+						<table class="form-table">
+							<tr>
+								<td>
+									<label class="checkboxes noselect">
+										<input type="checkbox" id="extras_almdias" />
+										<span>Almoço em cada um dos dias</span>
+									</label>
+								</td>
+								<td>
+									<label class="checkboxes noselect">
+										<input type="checkbox" id="extras_jantdias" />
+										<span>Jantar em cada um dos dias</span>
+									</label>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<label class="checkboxes noselect">
+										<input type="checkbox" id="extras_jantgala" />
+										<span>Jantar de gala</span>
+									</label>
+								</td>
+								<td>
+									<label class="checkboxes noselect">
+										<input type="checkbox" id="extras_espetaclcasino" />
+										<span>Espetáculo no casino</span>
+									</label>
+								</td>
+							</tr>
+						</table>
+					</center>
 					<input class="formSelects" id ="le" value="0 €"><br>
 					<select class="formSelects" id="adulto" style="width:25%;">
 						 <option class="ctr">Adultos</option>
