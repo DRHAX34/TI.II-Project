@@ -38,7 +38,7 @@
 				right:0px;
 				bottom:0px;
 			}
-			.mainBody.clientDiv{
+			.mainBody .clientDiv{
 				display: -webkit-flexbox;
 				display: -ms-flexbox;
 				display: -webkit-flex;
@@ -52,34 +52,30 @@
 			}
 			.clientForm{
 				color:White;
-				font-size:25px;
 				font-family:Verdana;
 				align-items:center;
 				display:inline-block;
-				cursor:pointer;
 			}
 			.formButtons{
 				border-radius:5px;
 				/*background-color:#1917B0; */
 				width:40%; 
 				height:10%; 
+				font-size:2em;
 				/*color: hsla(110,100%,22%,1.00);*/
 				font-family:Verdana;
 				border-color:#1F510D;
 				/*box-shadow:3px 3px 3px #1F510D, 3px 3px #1F510D inset;*/
 				margin-top:5%;
-				font-size: 36px;
 			}
 			.formSelects{	
  				border-radius:5px;
 				text-align:center !important;
 				/*background-color:#1917B0; */
-				width:40%; 
 				height:8%; 
+				font-size:1.3em;
 				/*color: hsla(110,100%,22%,1.00);*/
 				font-weight:900;
-				line-height:900%;
-				font-size:100%;
 				font-family:Verdana;
 				border-color:#1F510D;
 				display:inline-block;
@@ -87,17 +83,15 @@
 				/*box-shadow:3px 3px 3px #1F510D, 3px 3px #1F510D inset;*/
 				margin-top:3%;
 			}
-			.formSelects.ctr
+			.formSelects ctr
 				{	
  				border-radius:5px;
 				text-align:center !important;
 				/*background-color:#1917B0;*/ 
-				width:40%; 
+				width:20%; 
 				height:8%; 
 				/*color: hsla(110,100%,22%,1.00);*/
 				font-weight:900;
-				line-height:900%;
-				font-size:100%;
 				font-family:Verdana;
 				border-color:#1F510D;
 				display:inline-block;
@@ -105,33 +99,115 @@
 				/*box-shadow:3px 3px 3px #1F510D, 3px 3px #1F510D inset;*/
 				margin-top:3%;
 			}
-			.formSelects.input
+			.formInputs
 				{	
  				border-radius:5px;
-				text-align:center;
+				text-align:center !important;
 				/*background-color:#1917B0; */
-				width:15%; 
+                width:12%;
+                min-width:83px;
 				height:8%; 
+				font-size:1.3em;
 				/*color: hsla(110,100%,22%,1.00);*/
 				font-weight:900;
-				font-size:100%;
 				font-family:Verdana;
 				border-color:#1F510D;
 				display:inline-block;
 				cursor:pointer;
 				/*box-shadow:3px 3px 3px #1F510D, 3px 3px #1F510D inset;*/
 				margin-top:3%;
+			}
+			.form-table table,td{
+				vertical-align:middle;
+				text-align:center;
+				border: 1px solid black;
+				background-color:white;
+				color:black;
+				padding:5px;
+				font-size:1.5em;
+			}
+			.checkboxes{
+				cursor:pointer;
+			}
+			.noselect {
+			  -webkit-touch-callout: none;
+			  -webkit-user-select: none;
+			  -khtml-user-select: none;
+			  -moz-user-select: none;
+			  -ms-user-select: none;
+			  user-select: none;
 			}
 		</style>
 	
 		<script>
+		//constantes (manter padrão)
+			var havana = {
+				precoViagem:774,
+				precoHotel4:250,
+				precoHotel5:350,
+				precoAlm:35,
+				precoJan:55,
+				precoJaGa:65,
+				precoCasi:80,
+				precoAeHo:25,
+				precoHoAe:25,
+				precoTrAb:45
+			};
+			var acapulco = {
+				precoViagem:1069,
+				precoHotel4:220,
+				precoHotel5:310,
+				precoAlm:30,
+				precoJan:45,
+				precoJaGa:55,
+				precoCasi:70,
+				precoAeHo:20,
+				precoHoAe:20,
+				precoTrAb:35
+			};
+			var paris = {
+				precoViagem:148,
+				precoHotel4:320,
+				precoHotel5:480,
+				precoAlm:50,
+				precoJan:75,
+				precoJaGa:100,
+				precoCasi:95,
+				precoAeHo:40,
+				precoHoAe:40,
+				precoTrAb:75
+			};
+			var miami = {
+				precoViagem:836,
+				precoHotel4:315,
+				precoHotel5:475,
+				precoAlm:50,
+				precoJan:70,
+				precoJaGa:90,
+				precoCasi:90,
+				precoAeHo:35,
+				precoHoAe:35,
+				precoTrAb:65
+			};
+			var roma = {
+				precoViagem:208,
+				precoHotel4:300,
+				precoHotel5:410,
+				precoAlm:40,
+				precoJan:50,
+				precoJaGa:60,
+				precoCasi:75,
+				precoAeHo:25,
+				precoHoAe:25,
+				precoTrAb:45
+			};
 		// declaração de variaveis id 
-		var id_cidade = document.getElementById('cidade');
-		var id_hotel = document.getElementById('hotel');
-		var id_transporte = document.getElementById('transporte');
-		var id_extra = document.getElementById('extra');
-		var id_adultos = document.getElementById('adultos');
-		var id_criancas = document.getElementById('criancas');
+		var cidade = "";
+		var hotel = "";
+		var transporte = "";
+		var extras = {};
+		var adultos = "";
+		var criancas = "";
 			
 			
 			// declaração do objecto
@@ -147,26 +223,138 @@
 				};
 			return obj;
 			}
-			// teste provavelmente parvo
-			function mostrar(arg1, arg2){
-				var a = document.getElementById(arg1);
-				var b = document.getElementById(arg2);
-				switch (a){
-					case h: 
-						
-						break;
-					case a:
-						
-						break;
-					case p:
-						
-						break;
-					case m:
-						
-						break;
-					case r:	
-						
+			
+			function updateValues(varName,value){
+				this[varName]=value;
+				if(varName=="adultos"){
+					if(value == '3'){
+						document.getElementById('criancaSelect').disabled=true;
+						document.getElementById('precoCrianca').disabled=true;
+					} else {
+						document.getElementById('criancaSelect').disabled=false;
+						document.getElementById('precoCrianca').disabled=false;
+					}
 				}
+                preenchePrecos(cidade);
+			}
+			function updateExtras(extraName,value){
+				extras[extraName]=value;
+                preenchePrecos(cidade);
+			}
+			function validar(){
+				var validate = false;
+				var alert_txt = "";
+				if(cidade=="")
+					validate=true;
+				if(hotel=="")
+					validate=true;
+				if(transporte=="")
+					validate=true;
+				if(adultos=="")
+					validate=true;
+				if(criancas=="")
+					validate=true;
+				if(!validate){
+					alert_txt = (cidade!=""?(cidade + "\n"):"") + 
+						(hotel!=""?(hotel + "\n"):"") + 
+						(transporte!=""?(transporte + "\n"):"") +
+						(adultos!=""?(adultos + " Adultos\n"):"") +
+						(criancas!=""?(criancas + " Crianças"):"");
+					var hasExtras = false;
+					if(extras.almdias!=undefined && extras.almdias!=false){
+						if(!hasExtras){
+							hasExtras=true;
+							alert_txt += "\n Extras Escolhidos:"
+						}
+						alert_txt += "\n Almoço em cada um dos dias";
+					}
+					if(extras.jantdias!=undefined && extras.jantdias!=false){
+						if(!hasExtras){
+							hasExtras=true;
+							alert_txt += "\n Extras Escolhidos:"
+						}
+						alert_txt += "\n Jantar em cada um dos dias";
+					}
+					if(extras.jantgala!=undefined && extras.jantgala!=false){
+						if(!hasExtras){
+							hasExtras=true;
+							alert_txt += "\n Extras Escolhidos:"
+						}
+						alert_txt += "\n Jantar  de Gala";
+					}
+					if(extras.espetaclcasino!=undefined && extras.espetaclcasino!=false){
+						if(!hasExtras){
+							hasExtras=true;
+							alert_txt += "\n Extras Escolhidos:"
+						}
+						alert_txt += "\n Espetáculo no Casino";
+					}
+					if(!hasExtras){
+						alert_txt += "\n Não foram escolhidos nenhuns extras!"
+					}
+					
+				} else {
+					alert_txt = "Por favor selecione todas as opções obrigatórias!";
+				}
+				alert(alert_txt);
+			}
+            
+            function preenchePrecos(nomeCidade){
+                if (nomeCidade != undefined){
+                    try{
+                        cidade=nomeCidade.toLowerCase();
+                        var total= 0;
+                        document.getElementById("precoCidade").value= eval(cidade + ".precoViagem")+ " €";
+                        total +=  eval(cidade + ".precoViagem");
+                        switch (hotel){
+                            case "4": document.getElementById("precoHotel").value= eval(cidade + ".precoHotel4")+ " €";
+                            total +=  eval(cidade + ".precoHotel4");
+                                break;
+                            case "5":document.getElementById("precoHotel").value= eval(cidade + ".precoHotel5")+ " €";
+                            total +=  eval(cidade + ".precoHotel5");
+                                break;
+                            default:document.getElementById("precoHotel").value= 0 + " €";
+                                break;   
+                        }
+                        switch (transporte){
+                            case "1": document.getElementById("precoTrans").value= eval(cidade + ".precoAeHo")+ " €";
+                            total +=  eval(cidade + ".precoAeHo");
+                                break;
+                            case "2":document.getElementById("precoTrans").value= eval(cidade + ".precoHoAe")+ " €";
+                            total +=  eval(cidade + ".precoHoAe");
+                                break;
+                            case "3":document.getElementById("precoTrans").value= eval(cidade + ".precoTrAb")+ " €";
+                            total +=  eval(cidade + ".precoTrAb");
+                                break;
+                            case "4":document.getElementById("precoTrans").value= 0 + " €";
+                                break;
+                            default:document.getElementById("precoTrans").value= 0 + " €";
+                                break;   
+                        }
+                        var totalExtras= 0;
+                        if(extras.almdias!=undefined && extras.almdias!=false){
+                            totalExtras+= eval(cidade + ".precoAlm");
+                        }
+                        if(extras.jantdias!=undefined && extras.jantdias!=false){
+                            totalExtras+= eval(cidade + ".precoJan");
+                        }
+                        if(extras.jantgala!=undefined && extras.jantgala!=false){
+                            totalExtras+= eval(cidade + ".precoJaGa");
+                        }
+                        if(extras.espetaclcasino!=undefined && extras.espetaclcasino!=false){
+                            totalExtras+= eval(cidade + ".precoCasi");
+                        }
+                        total +=  totalExtras;
+                        document.getElementById("precoExtras").value= totalExtras + " €";
+                        var totalAdultos = parseInt(adultos!=""?adultos:0) * total;
+                        document.getElementById("precoAdultos").value= totalAdultos + " €";
+                        var totalCrianca = parseInt(criancas!=""?criancas:0) * (total/2);
+                        document.getElementById("precoCrianca").value= totalCrianca + " €";
+                    } catch (shit) {
+                        //do nothing
+                    }
+                }
+                    
 			}
 		</script>
 
@@ -178,50 +366,77 @@
 		<div class="mainBody">
 			<div class="mainBody clientDiv">
 				<form class="clientForm">
-					<select class="formSelects" id="cidade">
-						 <option class="ctr">Cidade</option>
-						 <option class="ctr" id="h" value="Havana" onClick="">Havana</option>
-						 <option class="ctr" id="a" value="Acapulco" onClick="">Acapulco</option>
-						 <option class="ctr" id="p" value="Paris" onClick="">Paris</option>
-						 <option class="ctr" id="m" value="Miami" onClick="">Miami</option>
-						 <option class="ctr" id="r" value="Roma" onClick="">Roma</option>
+					<select class="formSelects" id="cidade" onchange="updateValues('cidade',this.value)">
+						 <option class="ctr" value="">Cidade</option>
+						 <option class="ctr">Havana</option>
+						 <option class="ctr">Acapulco</option>
+						 <option class="ctr">Paris</option>
+						 <option class="ctr">Miami</option>
+						 <option class="ctr">Roma</option>
 					</select>
-					<input class="formSelects" id ="lc" value="0 €"><br>
-					<select class="formSelects" id="hotel" style="width:50%;">
-						 <option class="ctr">Hotel</option>
-						 <option class="ctr" id="4e" value="Hotel 4" onClick="">Hotel 4 Estrelas</option>
-						 <option class="ctr" id="5e" value="Hotel 5" onClick="">Hotel 5 Estrelas</option>
+					<input class="formInputs" id ="precoCidade" value="0 €"><br>
+					<select class="formSelects" id="hotel" onchange="updateValues('hotel',this.value)">
+						 <option class="ctr" value="">Hotel</option>
+						 <option class="ctr" value="4">Hotel 4 Estrelas</option>
+						 <option class="ctr" value="5">Hotel 5 Estrelas</option>
 					</select>
-					<input class="formSelects" id ="lh" value="0 €"><br>
-					<select class="formSelects" id="transporte" style="width:75%;">
-						 <option class="ctr">Transporte</option>
-						 <option class="ctr" id="ah" value="Trans ah" onClick="">Transporte do aeroporto / hotel</option>
-						 <option class="ctr" id="ha" value="Trans ha" onClick="">Transporte do hotel / aeroporto</option>
-						 <option class="ctr" id="ab" value="Trans ab" onClick="">Os dois transportes</option>
-						 <option class="ctr" id="sm" value="Trans sm" onClick="">Sem transporte</option>
+					<input class="formInputs" id ="precoHotel" value="0 €"><br>
+					<select class="formSelects" id="transporte" onchange="updateValues('transporte',this.value)">
+						 <option class="ctr" value="">Transporte</option>
+						 <option class="ctr" value="1">Transporte do aeroporto / hotel</option>
+						 <option class="ctr" value="2">Transporte do hotel / aeroporto</option>
+						 <option class="ctr" value="3">Os dois transportes</option>
+						 <option class="ctr" value="4">Sem transporte</option>
 					</select>
-					<input class="formSelects" id ="lt" value="0 €"><br>
-					<select class="formSelects" id="extras" style="width:70%;">
-						 <option class="ctr">Extras</option>
-						 <option class="ctr" id="ad" value="Trans ab" onClick="">Almoço em cada um dos dias</option>
-						 <option class="ctr" id="jd" value="Trans sm" onClick="">Jantar em cada um dos dias</option>
-						 <option class="ctr" id="jg" value="Jantar g" onClick="">Jantar de gala</option>
-						 <option class="ctr" id="ec" value="Esp ca" onClick="">Espetáculo no casino</option>
+					<input class="formInputs" id ="precoTrans" value="0 €"><br>
+					<center>
+						<span style="font-size:1.5em;">Extras</span>
+						<table class="form-table">
+							<tr>
+								<td>
+									<label class="checkboxes noselect">
+										<input type="checkbox" id="extras_almdias" onchange="updateExtras('almdias',this.checked)"/>
+										<span>Almoço em cada um dos dias</span>
+									</label>
+								</td>
+								<td>
+									<label class="checkboxes noselect">
+										<input type="checkbox" id="extras_jantdias" onchange="updateExtras('jantdias',this.checked)"/>
+										<span>Jantar em cada um dos dias</span>
+									</label>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<label class="checkboxes noselect">
+										<input type="checkbox" id="extras_jantgala" onchange="updateExtras('jantgala',this.checked)"/>
+										<span>Jantar de gala</span>
+									</label>
+								</td>
+								<td>
+									<label class="checkboxes noselect">
+										<input type="checkbox" id="extras_espetaclcasino" onchange="updateExtras('espetaclcasino',this.checked)"/>
+										<span>Espetáculo no casino</span>
+									</label>
+								</td>
+							</tr>
+						</table>
+					</center>
+					<input class="formInputs" id ="precoExtras" value="0 €"><br>
+					<select class="formSelects" id="adulto" onchange="updateValues('adultos',this.value)">
+						 <option class="ctr" value="">Adultos</option>
+						 <option class="ctr" value="1" >1 Adultos</option>
+						 <option class="ctr" value="2" >2 Adultos</option>
+						 <option class="ctr" value="3" >3 Adultos</option>
 					</select>
-					<input class="formSelects" id ="le" value="0 €"><br>
-					<select class="formSelects" id="adulto" style="width:25%;">
-						 <option class="ctr">Adultos</option>
-						 <option class="ctr" id="1a" value="1 Adul" onClick="">1 Adultos</option>
-						 <option class="ctr" id="2a" value="2 Adul" onClick="">1 Adultos</option>
-						 <option class="ctr" id="3a" value="3 Adul" onClick="">1 Adultos</option>
+					<input class="formInputs" id ="precoAdultos" value="0 €"><br>
+					<select class="formSelects" id="criancaSelect" onchange="updateValues('criancas',this.value)">
+						 <option class="ctr" value="">Crianças</option>
+						 <option class="ctr" value="0" >0 crianças</option>
+						 <option class="ctr" value="1" >1 criança</option>
 					</select>
-					<input class="formSelects" id ="la" value="0 €"><br>
-					<select class="formSelects" id="criança" style="width:25%;">
-						 <option class="ctr">Crianças</option>
-						 <option class="ctr" id="1c" value="1 Cri" onClick="">1 criança</option>
-					</select>
-					<input class="formSelects" id ="lcr" value="0 €"><br>
-					<button class="formButtons" type="button" id="b1" value="Validar" onClick="">Validar</button>
+					<input class="formInputs" id ="precoCrianca" value="0 €"><br>
+					<button class="formButtons" type="button" id="b1" value="Validar" onClick="validar()" >Validar</button>
 				</form>
 			</div>
 		</div>
