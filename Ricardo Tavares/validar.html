@@ -45,31 +45,12 @@
 			return false;
 			}
 		
-		var posicaoArroba = idEmail.value.indexOf("@");
-		var posicaoPontoAposArroba = idEmail.value.indexOf(".", posicaoArroba + 1);
-		var posicaoVirgula = idEmail.value.indexOf(",");
-		var posicaoEspaco = idEmail.value.indexOf(" ");
-		var posicaoUltimoPonto = idEmail.value.lastIndexOf(".");
-		var tamanhoStr = idEmail.value.length;
-		
-		if ( ! (( posicaoArroba > 0) && (posicaoPontoAposArroba > (posicaoArroba + 1 ))&& (posicaoVirgula == -1 ) && (posicaoEspaco == -1 ) && (tamanhoStr - posicaoUltimoPonto >=2 )&& (tamanhoStr - posicaoUltimoPonto <= 12 )))
+		if ((/^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i).test(idEmail))
 			{
-				alert("Email invalido");
-				
-				return false;
+			alert("Preecha o email corretamente");
 
+			return false;
 			}
-        var ilegais = "!#$%^&*()+=-[]\\\';,/{}|\":<>?";
-		for (var i=0;i<tamanhoStr;i++)
-		{
-			if(ilegais.indexOf(id_correio.value.charAt(i))!=-1)
-			{
-				alert("Tem caracteres iligais no campo do email.\nEstes caracteres não são autorizados. \nPor favor remova o caracter '"+id_correio.value.charAt(i)+"'");
-				return false
-			}
-		}
-		
-		
 		return true;
 	}
 	</script>	
