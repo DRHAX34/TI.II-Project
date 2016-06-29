@@ -38,7 +38,7 @@
 
 			return false;
 			}
-		if (/^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/)
+		if ((/^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/).test(idData))
 			{
 			alert("Preecha a data da seguinte forma dia/mês/ano");
 
@@ -58,8 +58,8 @@
 			<span id="data">Data de nascimento: </span>
 			<input id="iData" type="date"><br>
 			<span id="bi">Nº de cidadão/BI: </span>
-			<input id="iBi" type="text"><br>
-			<span id="telefone">Telefone: </span>
+			<input id="iBi" size="10" type="text"><br>
+			<span id="telefone" size="9">Telefone: </span>
 			<input id="iTelefone" type="text"><br>
 			<span id="email">Email: </span>
 			<input id="iEmail" type="email"><br>
