@@ -153,7 +153,7 @@
 				precoHoAe:25,
 				precoTrAb:45
 			};
-			var acaputo = {
+			var acapulco = {
 				precoViagem:1069,
 				precoHotel4:220,
 				precoHotel5:310,
@@ -229,15 +229,17 @@
 				if(varName=="adultos"){
 					if(value == '3'){
 						document.getElementById('criancaSelect').disabled=true;
-						document.getElementById('criancaInput').disabled=true;
+						document.getElementById('precoCrianca').disabled=true;
 					} else {
 						document.getElementById('criancaSelect').disabled=false;
-						document.getElementById('criancaInput').disabled=false;
+						document.getElementById('precoCrianca').disabled=false;
 					}
 				}
+                preenchePrecos(cidade);
 			}
 			function updateExtras(extraName,value){
 				extras[extraName]=value;
+                preenchePrecos(cidade);
 			}
 			function validar(){
 				var validate = false;
@@ -296,6 +298,64 @@
 				}
 				alert(alert_txt);
 			}
+            
+            function preenchePrecos(nomeCidade){
+                if (nomeCidade != undefined){
+                    try{
+                        cidade=nomeCidade.toLowerCase();
+                        var total= 0;
+                        document.getElementById("precoCidade").value= eval(cidade + ".precoViagem")+ " €";
+                        total +=  eval(cidade + ".precoViagem");
+                        switch (hotel){
+                            case "4": document.getElementById("precoHotel").value= eval(cidade + ".precoHotel4")+ " €";
+                            total +=  eval(cidade + ".precoHotel4");
+                                break;
+                            case "5":document.getElementById("precoHotel").value= eval(cidade + ".precoHotel5")+ " €";
+                            total +=  eval(cidade + ".precoHotel5");
+                                break;
+                            default:document.getElementById("precoHotel").value= 0 + " €";
+                                break;   
+                        }
+                        switch (transporte){
+                            case "1": document.getElementById("precoTrans").value= eval(cidade + ".precoAeHo")+ " €";
+                            total +=  eval(cidade + ".precoAeHo");
+                                break;
+                            case "2":document.getElementById("precoTrans").value= eval(cidade + ".precoHoAe")+ " €";
+                            total +=  eval(cidade + ".precoHoAe");
+                                break;
+                            case "3":document.getElementById("precoTrans").value= eval(cidade + ".precoTrAb")+ " €";
+                            total +=  eval(cidade + ".precoTrAb");
+                                break;
+                            case "4":document.getElementById("precoTrans").value= 0 + " €";
+                                break;
+                            default:document.getElementById("precoTrans").value= 0 + " €";
+                                break;   
+                        }
+                        var totalExtras= 0;
+                        if(extras.almdias!=undefined && extras.almdias!=false){
+                            totalExtras+= eval(cidade + ".precoAlm");
+                        }
+                        if(extras.jantdias!=undefined && extras.jantdias!=false){
+                            totalExtras+= eval(cidade + ".precoJan");
+                        }
+                        if(extras.jantgala!=undefined && extras.jantgala!=false){
+                            totalExtras+= eval(cidade + ".precoJaGa");
+                        }
+                        if(extras.espetaclcasino!=undefined && extras.espetaclcasino!=false){
+                            totalExtras+= eval(cidade + ".precoCasi");
+                        }
+                        total +=  totalExtras;
+                        document.getElementById("precoExtras").value= totalExtras + " €";
+                        var totalAdultos = parseInt(adultos!=""?adultos:0) * total;
+                        document.getElementById("precoAdultos").value= totalAdultos + " €";
+                        var totalCrianca = parseInt(criancas!=""?criancas:0) * (total/2);
+                        document.getElementById("precoCrianca").value= totalCrianca + " €";
+                    } catch (shit) {
+                        //do nothing
+                    }
+                }
+                    
+			}
 		</script>
 
 	</head>
@@ -314,21 +374,21 @@
 						 <option class="ctr">Miami</option>
 						 <option class="ctr">Roma</option>
 					</select>
-					<input class="formInputs" id ="lc" value="0 €" disabled><br>
+					<input class="formInputs" id ="precoCidade" value="0 €"><br>
 					<select class="formSelects" id="hotel" onchange="updateValues('hotel',this.value)">
 						 <option class="ctr" value="">Hotel</option>
-						 <option class="ctr">Hotel 4 Estrelas</option>
-						 <option class="ctr">Hotel 5 Estrelas</option>
+						 <option class="ctr" value="4">Hotel 4 Estrelas</option>
+						 <option class="ctr" value="5">Hotel 5 Estrelas</option>
 					</select>
-					<input class="formInputs" id ="lh" value="0 €" disabled><br>
+					<input class="formInputs" id ="precoHotel" value="0 €"><br>
 					<select class="formSelects" id="transporte" onchange="updateValues('transporte',this.value)">
 						 <option class="ctr" value="">Transporte</option>
-						 <option class="ctr">Transporte do aeroporto / hotel</option>
-						 <option class="ctr">Transporte do hotel / aeroporto</option>
-						 <option class="ctr">Os dois transportes</option>
-						 <option class="ctr">Sem transporte</option>
+						 <option class="ctr" value="1">Transporte do aeroporto / hotel</option>
+						 <option class="ctr" value="2">Transporte do hotel / aeroporto</option>
+						 <option class="ctr" value="3">Os dois transportes</option>
+						 <option class="ctr" value="4">Sem transporte</option>
 					</select>
-					<input class="formInputs" id ="lt" value="0 €" disabled><br>
+					<input class="formInputs" id ="precoTrans" value="0 €"><br>
 					<center>
 						<span style="font-size:1.5em;">Extras</span>
 						<table class="form-table">
@@ -362,20 +422,20 @@
 							</tr>
 						</table>
 					</center>
-					<input class="formInputs" id ="le" value="0 €" disabled><br>
+					<input class="formInputs" id ="precoExtras" value="0 €"><br>
 					<select class="formSelects" id="adulto" onchange="updateValues('adultos',this.value)">
 						 <option class="ctr" value="">Adultos</option>
 						 <option class="ctr" value="1" >1 Adultos</option>
 						 <option class="ctr" value="2" >2 Adultos</option>
 						 <option class="ctr" value="3" >3 Adultos</option>
 					</select>
-					<input class="formInputs" id ="la" value="0 €" disabled><br>
+					<input class="formInputs" id ="precoAdultos" value="0 €"><br>
 					<select class="formSelects" id="criancaSelect" onchange="updateValues('criancas',this.value)">
 						 <option class="ctr" value="">Crianças</option>
 						 <option class="ctr" value="0" >0 crianças</option>
 						 <option class="ctr" value="1" >1 criança</option>
 					</select>
-					<input class="formInputs" id ="criancaInput" value="0 €" disabled><br>
+					<input class="formInputs" id ="precoCrianca" value="0 €"><br>
 					<button class="formButtons" type="button" id="b1" value="Validar" onClick="validar()" >Validar</button>
 				</form>
 			</div>
