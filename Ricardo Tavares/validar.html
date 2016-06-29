@@ -8,10 +8,47 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Trabalho TI II</title>
 	<meta name="description" content="Javascript">
-    
-	<link rel="stylesheet" type="text/css" href="Project_TI/reset_css.css">
+    <link rel="stylesheet" type="text/css" href="Project_TI/reset_css.css">
+		
+	<script>
+		function validarFor()
+	{
+		var idNome = document.getElementById("iNome");
+		var idMorada = document.getElementById("iMorada");
+		var idData = document.getElementById("iData");
+		var idBi = document.getElementById("iBi");
+		var idTelefone = document.getElementById("iTelefone");
+		var idEmail = document.getElementById("iEmail");
+		
+		if (idNome.value.length == 0 || idMorada.value.length == 0 || iData.value.length == 0 || iBi.value.length == 0 || iTelefone.value.length == 0 )
+		{
+			alert("Preencha todos os campos");
+
+			return false;
+		}
+		if (isNaN(iBi.value))
+			{
+			alert("Preencha os campo Bi só com numeros");
+
+			return false;
+			}
+		if (isNaN(iTelefone.value))
+			{
+			alert("Preencha o telefone só com numeros");
+
+			return false;
+			}
+		if (/^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/)
+			{
+			alert("Preecha a data da seguinte forma dia/mês/ano");
+
+			return false;
+			}
+	}
+	</script>	
 		
 	</head>
+	
 	<body>
 		<div>
 			<span id="nome">Nome: </span>
@@ -27,10 +64,10 @@
 			<span id="email">Email: </span>
 			<input id="iEmail" type="email"><br>
 		
-			<button id="confirmar">Confirmar</button>
+			<button id="confirmar" onClick="validarFor()">Confirmar</button>
 		</div>
 		<div>
-			<button id="confirmar">Confirmar</button>
-			<button id="confirmar">Confirmar</button>
+			<button id="visa">Visa</button>
+			<button id="mb">Multibanco</button>
 		</div>
 	</body>
