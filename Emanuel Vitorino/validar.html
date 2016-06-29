@@ -49,7 +49,11 @@
         var preco;
         
         window.onload = function(){
-            var preco = window.location.href.split("?")[1].replace("preco=","");
+            
+            document.getElementById("divFormulario").style.display = "";
+            document.getElementById("divPagar").style.display = "none";
+            
+            preco = window.location.href.split("?")[1].replace("preco=","");
             
             if(preco==undefined)
                 preco = window.opener.precoTotal;
@@ -98,7 +102,9 @@
 
                 return false;
                 }
-            document.getElementById("iNome");
+            document.getElementById("divPagar").style.display = "";
+            document.getElementById("divFormulario").style.display = "none";
+            document.getElementById("precoTotal").innerHTML = preco + " €";
             return true;
         }
 	</script>	
@@ -107,7 +113,7 @@
 	</head>
 	
 	<body>
-		<div>
+		<div id="divFormulario">
 			<span id="nome">Nome: </span>
 			<input id="iNome" type="text"><br>
 			<span id="morada">Morada</span>
@@ -123,8 +129,17 @@
 		
 			<button id="confirmar" onClick="validarFor()" class="button">Confirmar</button>
 		</div>
-		<div>
-			<button id="visa" class="button" style="height:auto" hidden><img src="Project_TI/pagar-cc.jpg" /></button>
-			<button id="mb" class="button" style="height:auto" hidden><img src="Project_TI/pagar-multibanco.jpg" /></button>
+		<div id="divPagar">
+            <br>
+            <br>
+            <span>Preço Total: </span><span id="precoTotal"></span>
+            <br>
+            <br>
+            <br>
+            <span>Pagar com:</span>
+            <br>
+            <br>
+			<button id="visa" class="button" style="height:auto"><img src="Project_TI/pagar-cc.jpg" /></button>
+			<button id="mb" class="button" style="height:auto"><img src="Project_TI/pagar-multibanco.jpg" /></button>
 		</div>
 	</body>
