@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+
+<html>
+    
+    
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Trabalho TI II</title>
+	<meta name="description" content="Javascript">
+    <link rel="stylesheet" type="text/css" href="Project_TI/reset_css.css">
+		
+         <style>
+			body{
+				background-color:white;
+                font-size: 16px;
+                font-style: Verdana, Tahoma, sans-serif;
+                font-weight: bold;
+                align-items: center;
+				text-align:	center;
+			}
+			
+			input {
+                margin-left: 2px;
+                margin: 3px;
+                border: 1px solid #E5E5E5;
+                height: 30px;
+                font-size: 14px;
+                width: auto;
+                color: #999999;
+                border-radius: 8px;
+                box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 4px;
+                -moz-box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 4px;
+                -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 4px;		
+             }
+
+             .button {
+                 width: auto; 
+                 height: 40px;
+                 background-color: #474E69; 
+                 color: #FFF;
+                 border-radius: 5px;
+                 -moz-border-radius: 3px;
+                 -webkit-border-radius: 3px;		
+}
+		</style>
+	
+	<script>
+        var preco;
+        
+        window.onload = function(){
+            var preco = window.location.href.split("?")[1].replace("preco=","");
+            
+            if(preco==undefined)
+                preco = window.opener.precoTotal;
+            
+            if(preco==undefined){
+                alert("Falha ao receber preço!");
+            }
+        }
+        
+        function validarFor()
+        {
+            var idNome = document.getElementById("iNome");
+            var idMorada = document.getElementById("iMorada");
+            var idData = document.getElementById("iData");
+            var idTelefone = document.getElementById("iTelefone");
+            var idEmail = document.getElementById("iEmail");
+
+            if (idNome.value.length == 0)
+            {
+                alert("Preencha");
+
+                return false;
+            }
+        }
+	</script>	
+		
+   
+	</head>
+	
+	<body>
+		<div>
+			<span id="nome">Nome: </span>
+			<input id="iNome" type="text"><br>
+			<span id="morada">Morada</span>
+			<input id="iMorada" type="text"><br>
+			<span id="data">Data de nascimento: </span>
+			<input id="iData" type="date"><br>
+			<span id="bi">Nº de cidadão/BI: </span>
+			<input id="iBi" type="text"><br>
+			<span id="telefone">Telefone: </span>
+			<input id="iTelefone" type="text"><br>
+			<span id="email">Email: </span>
+			<input id="iEmail" type="email"><br>
+		
+			<button id="confirmar" onClick="validarFor()" class="button">Confirmar</button>
+		</div>
+		<div>
+			<button id="visa" class="button" style="height:auto" hidden><img src="Project_TI/pagar-cc.jpg" /></button>
+			<button id="mb" class="button" style="height:auto" hidden><img src="Project_TI/pagar-multibanco.jpg" /></button>
+		</div>
+	</body>
