@@ -59,20 +59,47 @@
             }
         }
         
-        function validarFor()
-        {
+        function validarFor(){
             var idNome = document.getElementById("iNome");
             var idMorada = document.getElementById("iMorada");
             var idData = document.getElementById("iData");
+            var idBi = document.getElementById("iBi");
             var idTelefone = document.getElementById("iTelefone");
             var idEmail = document.getElementById("iEmail");
 
-            if (idNome.value.length == 0)
+            if (idNome.value.length == 0 || idMorada.value.length == 0 || iData.value.length == 0 || iBi.value.length == 0 || iTelefone.value.length == 0 || idEmail.value.length == 0 )
             {
-                alert("Preencha");
+                alert("Preencha todos os campos");
 
                 return false;
             }
+            if (isNaN(iBi.value))
+                {
+                alert("Preencha os campo Bi só com numeros");
+
+                return false;
+                }
+            if (isNaN(iTelefone.value))
+                {
+                alert("Preencha o telefone só com numeros");
+
+                return false;
+                }
+            if ((/^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/).test(idData))
+                {
+                alert("Preecha a data da seguinte forma dia/mês/ano");
+
+                return false;
+                }
+
+            if ((/^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i).test(idEmail))
+                {
+                alert("Preecha o email corretamente");
+
+                return false;
+                }
+            document.getElementById("iNome");
+            return true;
         }
 	</script>	
 		
