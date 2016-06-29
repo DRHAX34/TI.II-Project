@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="Project_TI/reset_css.css">
 		
 	<script>
-		function validarFor()
+	function validarFor()
 	{
 		var idNome = document.getElementById("iNome");
 		var idMorada = document.getElementById("iMorada");
@@ -20,7 +20,7 @@
 		var idTelefone = document.getElementById("iTelefone");
 		var idEmail = document.getElementById("iEmail");
 		
-		if (idNome.value.length == 0 || idMorada.value.length == 0 || iData.value.length == 0 || iBi.value.length == 0 || iTelefone.value.length == 0 )
+		if (idNome.value.length == 0 || idMorada.value.length == 0 || iData.value.length == 0 || iBi.value.length == 0 || iTelefone.value.length == 0 || idEmail.value.length == 0 )
 		{
 			alert("Preencha todos os campos");
 
@@ -44,6 +44,33 @@
 
 			return false;
 			}
+		
+		var posicaoArroba = idEmail.value.indexOf("@");
+		var posicaoPontoAposArroba = idEmail.value.indexOf(".", posicaoArroba + 1);
+		var posicaoVirgula = idEmail.value.indexOf(",");
+		var posicaoEspaco = idEmail.value.indexOf(" ");
+		var posicaoUltimoPonto = idEmail.value.lastIndexOf(".");
+		var tamanhoStr = idEmail.value.length;
+		
+		if ( ! (( posicaoArroba > 0) && (posicaoPontoAposArroba > (posicaoArroba + 1 ))&& (posicaoVirgula == -1 ) && (posicaoEspaco == -1 ) && (tamanhoStr - posicaoUltimoPonto >=2 )&& (tamanhoStr - posicaoUltimoPonto <= 12 )))
+			{
+				alert("Email invalido");
+				
+				return false;
+
+			}
+        var ilegais = "!#$%^&*()+=-[]\\\';,/{}|\":<>?";
+		for (var i=0;i<tamanhoStr;i++)
+		{
+			if(ilegais.indexOf(id_correio.value.charAt(i))!=-1)
+			{
+				alert("Tem caracteres iligais no campo do email.\nEstes caracteres não são autorizados. \nPor favor remova o caracter '"+id_correio.value.charAt(i)+"'");
+				return false
+			}
+		}
+		
+		
+		return true;
 	}
 	</script>	
 		
