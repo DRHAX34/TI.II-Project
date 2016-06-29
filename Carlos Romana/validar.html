@@ -10,6 +10,39 @@
 	<meta name="description" content="Javascript">
     <link rel="stylesheet" type="text/css" href="Project_TI/reset_css.css">
 		
+         <style>
+			body{
+				background-color:white;
+                font-size: 15px;
+                font-style: Verdana, Tahoma, sans-serif;
+                align-items: center;
+				text-align:	center;
+			}
+			
+			input {
+                margin-left: 2px;
+                margin: 3px;
+                border: 1px solid #E5E5E5;
+                height: 30px;
+                width: 200px;
+                color: #999999;
+                border-radius: 8px;
+                box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 4px;
+                -moz-box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 4px;
+                -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 4px;		
+             }
+
+             .button {
+                 width: auto; 
+                 height: 40px;
+                 background-color: #474E69; 
+                 color: #FFF;
+                 border-radius: 5px;
+                 -moz-border-radius: 3px;
+                 -webkit-border-radius: 3px;		
+}
+		</style>
+	
 	<script>
 		function validarFor()
 	{
@@ -21,13 +54,14 @@
 		
 		if (idNome.value.length == 0)
 		{
-			alert("Faltou o nome");
+			alert("Preencha");
 
 			return false;
 		}
 	}
 	</script>	
 		
+   
 	</head>
 	
 	<body>
@@ -45,10 +79,10 @@
 			<span id="email">Email: </span>
 			<input id="iEmail" type="email"><br>
 		
-			<button id="confirmar" onClick="validarFor()">Confirmar</button>
+			<button id="confirmar" onClick="validarFor()" class="button">Confirmar</button>
 		</div>
 		<div>
-			<button id="visa">Visa</button>
-			<button id="mb">Multibanco</button>
+			<button id="visa" class="button">Visa</button>
+			<button id="mb" class="button">Multibanco</button>
 		</div>
 	</body>
