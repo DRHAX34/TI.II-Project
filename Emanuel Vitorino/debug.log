@@ -1,0 +1,17 @@
+[0630/010250:ERROR:process_info.cc(608)] range at 0xbf7835f800000000, size 0x256 fully unreadable
+[0630/010250:ERROR:process_info.cc(608)] range at 0xbf78365a00000000, size 0x256 fully unreadable
+[0630/010250:ERROR:process_info.cc(608)] range at 0x0, size 0x256 fully unreadable
+[0630/010250:ERROR:process_reader_win.cc(141)] SuspendThread: Acesso negado. (0x5)
+[0630/010250:ERROR:process_reader_win.cc(141)] SuspendThread: Acesso negado. (0x5)
+[0630/010250:ERROR:process_reader_win.cc(141)] SuspendThread: Acesso negado. (0x5)
+[0630/010250:ERROR:process_reader_win.cc(141)] SuspendThread: Acesso negado. (0x5)
+[0630/010250:ERROR:process_reader_win.cc(141)] SuspendThread: Acesso negado. (0x5)
+[0630/010250:ERROR:process_reader_win.cc(141)] SuspendThread: Acesso negado. (0x5)
+[0630/010250:ERROR:process_reader_win.cc(141)] SuspendThread: Acesso negado. (0x5)
+[0630/010250:ERROR:process_reader_win.cc(141)] SuspendThread: Acesso negado. (0x5)
+[0630/010250:ERROR:process_reader_win.cc(141)] SuspendThread: Acesso negado. (0x5)
+[0630/010250:ERROR:process_reader_win.cc(141)] SuspendThread: Acesso negado. (0x5)
+[0630/010250:ERROR:process_reader_win.cc(141)] SuspendThread: Acesso negado. (0x5)
+[0630/010250:ERROR:process_reader_win.cc(141)] SuspendThread: Acesso negado. (0x5)
+[0630/010250:ERROR:exception_snapshot_win.cc(57)] thread ID 4944 not found in process
+[0630/010250:WARNING:crash_report_exception_handler.cc(60)] ProcessSnapshotWin::InitializeException failed
