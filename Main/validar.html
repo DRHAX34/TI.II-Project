@@ -46,12 +46,16 @@
 		</style>
 	
 	<script>
+        var validarMesDia = /^(1[0-2]|0[1-9]|\d)\/([2-9]\d[1-9]\d|[1-9]\d)$/;
+        
         var preco;
         
         window.onload = function(){
             
             document.getElementById("divFormulario").style.display = "";
             document.getElementById("divPagar").style.display = "none";
+            document.getElementById("pagarMultibanco").style.display = "none";
+            document.getElementById("pagarCredito").style.display = "none";
             
             preco = window.location.href.split("?")[1].replace("preco=","");
             
@@ -61,6 +65,46 @@
             if(preco==undefined){
                 alert("Falha ao receber preço!");
             }
+        }
+        
+        function mostrarMultibanco(){
+            
+            document.getElementById("divPagar").style.display = "none";
+            document.getElementById("pagarMultibanco").style.display = "";
+        }
+        
+        function mostrarCredito(){
+            
+            document.getElementById("divPagar").style.display = "none";
+            document.getElementById("pagarCredito").style.display = "";
+        }
+        
+        function pagar(){
+            var iNumCartao = document.getElementById("iNumCartao");
+            var iCodSeg = document.getElementById("iCodSeg");
+            var iVal = document.getElementById("iVal");
+            if(new Number(iNumCartao.value).toString().length>16 || new Number(iNumCartao.value).toString().length<16){
+                alert("O número do Cartão de Crédito não é válido, por favor valide!");
+                return false;
+            }
+            if(new Number(iCodSeg.value).toString().length>4 || new Number(iCodSeg.value).toString().length<4){
+                alert("O código de segurança não é válido, por favor valide!");
+                return false;
+            }
+            if(!validarMesDia.test(iVal.value)){
+                alert("A validade não é válida! Por favor valide!");
+                return false;
+            }
+            
+            iNumCartao.style.display = "none";
+            iCodSeg.style.display = "none";
+            iVal.style.display = "none";
+            
+            document.getElementById("val").style.display = "none";
+            document.getElementById("NumCartao").style.display = "none";
+            document.getElementById("CodSeg").style.display = "none";
+            document.getElementById("pagar").style.display = "none";
+            document.getElementById("pagoSucesso").style.display = "";
         }
         
         function validarFor(){
@@ -105,6 +149,7 @@
             document.getElementById("divPagar").style.display = "";
             document.getElementById("divFormulario").style.display = "none";
             document.getElementById("precoTotal").innerHTML = preco + " €";
+            document.getElementById("montanteTotal").innerHTML = preco + " €";
             return true;
         }
 	</script>	
@@ -119,7 +164,7 @@
 			<span id="morada">Morada</span>
 			<input id="iMorada" type="text"><br>
 			<span id="data">Data de nascimento: </span>
-			<input id="iData" type="date"><br>
+			<input id="iData" type="text"><br>
 			<span id="bi">Nº de cidadão/BI: </span>
 			<input id="iBi" type="text"><br>
 			<span id="telefone">Telefone: </span>
@@ -139,7 +184,29 @@
             <span>Pagar com:</span>
             <br>
             <br>
-			<button id="visa" class="button" style="height:auto"><img src="Project_TI/pagar-cc.jpg" /></button>
-			<button id="mb" class="button" style="height:auto"><img src="Project_TI/pagar-multibanco.jpg" /></button>
+			<button id="visa" class="button" onClick="mostrarCredito()" style="height:auto"><img src="Project_TI/pagar-cc.jpg" /></button>
+			<button id="mb" class="button" onClick="mostrarMultibanco()" style="height:auto"><img src="Project_TI/pagar-multibanco.jpg" /></button>
 		</div>
+        <div id="pagarMultibanco">
+            <br>
+            <br>
+            <span>Entidade: 88880</span>
+            <br>
+            <br>
+            <span>Referência: 111 222 333</span>
+            <br>
+            <br>
+            <span>Montante:</span><span id="montanteTotal"></span>
+        </div>
+        <div id="pagarCredito">
+			<span id="NCartao">Nºdo cartão: </span>
+			<input id="iNumCartao" size="16" type="text"><br>
+			<span id="CodSeg">Código de Segurança</span>
+			<input id="iCodSeg" size="4" type="text"><br>
+			<span id="Val">Validade (Mês/Ano) </span>
+			<input id="iVal" size="5" type="text"><br>
+            
+			<button id="pagar" onClick="pagar()" class="button">Pagar</button>
+            <span id="pagoSucesso" style="display:none;">Pago com êxito</span>
+        </div>
 	</body>
